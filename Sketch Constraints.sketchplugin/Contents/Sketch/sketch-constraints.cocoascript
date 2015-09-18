@@ -1,0 +1,104 @@
+@import "utils.js"
+
+var updateLayout = function(context) {
+  // Global variables
+  initContext(context)
+  // Get all artboards in the current page
+  var artboards = page.artboards(),
+      artboardLoop = artboards.objectEnumerator()
+  // Create a loop which iterates through every artboard
+  while (artboard = artboardLoop.nextObject()) {
+    // Get @constraints layer from the current artboard in the loop
+    var constraintsLayer = getLayerByName("@constraints", artboard)
+    // If @constraints layer exists
+    if (exists(constraintsLayer)) {
+      // Get all layers from the current artboard in the loop
+      var constraintsLayerContent = JSON.parse(constraintsLayer.stringValue()),
+          layers = artboard.layers().array(),
+          layerLoop = layers.objectEnumerator()
+      // Create another loop which iterates through every layers of the current artboard in the loop
+      while (layer = layerLoop.nextObject()) {
+        // Apply constraints on the current layer in the second loop
+        processLayer(layer, constraintsLayerContent)
+      }
+    }
+  }
+}
+
+var onRun = function(context) {
+  // Global variables
+  initContext(context)
+  // "Edit Constraints" window
+  function editConstraints() {
+    // Get the current layer
+    var currentLayer = (selection.count() > 0) ? selection[0] : false
+    // Check if constraints can be applied to the current layer
+    if (error(selection, currentLayer, artboard)) {
+      return
+    }
+    // Get @constraints layer and create window
+    var constraintsLayer = getLayerByName("@constraints", artboard),
+        window = createWindow(currentLayer),
+        alert = window[0],
+        inputs = window[1]
+    // Fill inputs with current values if the current layer already has constraints
+    if (constraintsLayer) {
+      var constraintsLayerContent = JSON.parse(constraintsLayer.stringValue()),
+          layerConstraints = fillInputs(constraintsLayerContent, inputs, currentLayer)
+    }
+    // Get response from the window
+    var response = alert.runModal()
+    // Store values from inputs
+    var values = {
+      name: String(currentLayer.name()),
+      top: getStringValue(inputs[6]),
+      right: getStringValue(inputs[7]),
+      bottom: getStringValue(inputs[8]),
+      left: getStringValue(inputs[9]),
+      horizontally: getStateValue(inputs[4]),
+      vertically: getStateValue(inputs[5]),
+      width: (Number(inputs[0].state())) ? getStringValue(inputs[1]) : null,
+      height: (Number(inputs[2].state())) ? getStringValue(inputs[3]) : null
+    }
+    // Delete null values
+    for (var key in values) {
+      if (values[key] == null) delete values[key]
+    }
+    // If "OK" button is pressed
+    if (response == "1000") {
+      // If @constraints layer exists and at least one constraint has been created
+      if (constraintsLayer && Object.keys(values).length > 1) {
+        // Update @constraints layer content with new values
+        constraintsLayerContent.push(values)
+        updateConstraintsLayer(constraintsLayer, constraintsLayerContent)
+        // Update Layout
+        updateLayout(context)
+      } else {
+        // If at least one constraint has been created
+        if (Object.keys(values).length > 1) {
+          // Create @constraints layer
+          var constraintsLayerContent = []
+          constraintsLayerContent.push(values)
+          createConstraintsLayer(constraintsLayerContent)
+          // Update Layout
+          updateLayout(context)
+        }
+      }
+    }
+    // If "Cancel" button is pressed and the current layer already has constraints
+    else if (response == "1001" && layerConstraints) {
+      // Update @constraints layer content if at least one constraint has been created
+      if (Object.keys(values).length > 1) constraintsLayerContent.push(values)
+      updateConstraintsLayer(constraintsLayer, constraintsLayerContent)
+    }
+    // If "Reset Constraints" button is pressed
+    else if (response == "1002") {
+      // Update @constraints layer content if the current layer already has constraints
+      if (layerConstraints) updateConstraintsLayer(constraintsLayer, constraintsLayerContent)
+      // Relaunch window
+      editConstraints()
+    }
+  }
+  // Launch window
+  editConstraints()
+}

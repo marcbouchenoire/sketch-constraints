@@ -1,0 +1,32 @@
+{
+    "name": "Sketch Constraints",
+    "description" : "A plugin that integrates constraints in Sketch to lay out layers.",
+    "author" : "Marc Bouchenoire",
+    "authorEmail" : "mail@marcbouchenoire.com",
+    "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
+    "version" : "1.0",
+    "identifier" : "com.bouchenoiremarc.sketch-constraints",
+    "compatibleVersion": "3.3",
+    "bundleVersion": "1",
+    "commands" : [
+        {
+            "script" : "sketch-constraints.cocoascript",
+            "shortcut" : "cmd e",
+            "name" : "Edit Constraints",
+            "identifier" : "editConstraints"
+        },
+        {
+            "script" : "sketch-constraints.cocoascript",
+            "handler" : "updateLayout",
+            "shortcut" : "cmd l",
+            "name" : "Update Layout",
+            "identifier" : "updateLayout"
+        }
+    ],
+    "menu" : {
+        "items" : [
+            "editConstraints",
+            "updateLayout"
+        ]
+    }
+}
