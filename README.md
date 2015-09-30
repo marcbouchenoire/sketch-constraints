@@ -16,6 +16,7 @@ Sketch Constraints is a plugin that integrates constraints in Sketch to lay out 
 ### Example
 
 ![iOS 9 Lockscreen example](docs/example@2x.png)
+[Watch on Vimeo](https://vimeo.com/140962822)
 
 ## Installation
 
