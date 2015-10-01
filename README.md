@@ -27,14 +27,16 @@ Make sure you have the latest version of Sketch 3 installed. **(Sketch 3.3+)**
 
 ## Notes
 
-1. **Constraints are not relative to other layers, only to the parent.**
-2. `Update Layout` updates every artboard of the current page.
-3. When a group is resized, all the children layers are resized. If you want a child layer to keep its size, check `Width` and/or `Height`.
-3. *Currently, constraints are linked to layer names. Linking them to layer IDs wasn't a better solution because it would stop working for duplicated artboards and layers. If you know how to improve this, ping me on [Twitter](https://twitter.com/bouchenoiremarc) or [create an issue](https://github.com/bouchenoiremarc/Sketch-Constraints/issues).*
+* **Constraints are not relative to other layers, only to the parent.**
+* `Update Layout` updates every artboard of the current page.
+* When a group is resized, all the children layers are resized. If you want a child layer to keep its size, check `Width` and/or `Height`.
+* *Currently, constraints are linked to layer names. Linking them to layer IDs wasn't a better solution because it would stop working for duplicated artboards and layers. If you know how to improve this, ping me on [Twitter](https://twitter.com/bouchenoiremarc) or [create an issue](https://github.com/bouchenoiremarc/Sketch-Constraints/issues).*
 
 ## Inspiration
 
-This plugin is inspired by this [Medium article](https://medium.com/bridge-collection/modern-design-tools-using-real-data-62d499e97482) from [Josh Puckett](https://twitter.com/joshpuckett).
+* This [Medium article](https://medium.com/bridge-collection/modern-design-tools-using-real-data-62d499e97482) from [Josh Puckett](https://twitter.com/joshpuckett).
+* [Bind](https://github.com/almonk/Bind) from [Alasdair Monk](https://twitter.com/almonk).
+* [Sketch Flex Layout](https://github.com/hrescak/Sketch-Flex-Layout) from [Matej Hrescak](https://twitter.com/mhrescak).
 
 ## License
 
