@@ -36,8 +36,6 @@ Make sure you have the latest version of Sketch 3 installed. **(Sketch 3.3+)**
 
 This plugin is inspired by this [Medium article](https://medium.com/bridge-collection/modern-design-tools-using-real-data-62d499e97482) from [Josh Puckett](https://twitter.com/joshpuckett).
 
-https://medium.com/bridge-collection/modern-design-tools-adaptive-layouts-e236070856e3
-
 ## License
 
 Sketch Constraints is released under the MIT license. See [LICENSE](LICENSE) for details.
