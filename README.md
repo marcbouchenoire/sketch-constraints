@@ -32,6 +32,12 @@ Make sure you have the latest version of Sketch 3 installed. **(Sketch 3.3+)**
 3. When a group is resized, all the children layers are resized. If you want a child layer to keep its size, check `Width` and/or `Height`.
 3. *Currently, constraints are linked to layer names. Linking them to layer IDs wasn't a better solution because it would stop working for duplicated artboards and layers. If you know how to improve this, ping me on [Twitter](https://twitter.com/bouchenoiremarc) or [create an issue](https://github.com/bouchenoiremarc/Sketch-Constraints/issues).*
 
+## Inspiration
+
+This plugin is inspired by this [Medium article](https://medium.com/bridge-collection/modern-design-tools-using-real-data-62d499e97482) from [Josh Puckett](https://twitter.com/joshpuckett).
+
+https://medium.com/bridge-collection/modern-design-tools-adaptive-layouts-e236070856e3
+
 ## License
 
 Sketch Constraints is released under the MIT license. See [LICENSE](LICENSE) for details.
