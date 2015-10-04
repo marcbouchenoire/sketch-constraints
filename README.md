@@ -34,7 +34,7 @@ Make sure you have the latest version of Sketch 3 installed. **(Sketch 3.3+)**
 
 ## Inspiration
 
-* This [Medium article](https://medium.com/bridge-collection/modern-design-tools-using-real-data-62d499e97482) from [Josh Puckett](https://twitter.com/joshpuckett).
+* This [Medium article](https://medium.com/bridge-collection/modern-design-tools-adaptive-layouts-e236070856e3) from [Josh Puckett](https://twitter.com/joshpuckett).
 * [Bind](https://github.com/almonk/Bind) from [Alasdair Monk](https://twitter.com/almonk).
 * [Sketch Flex Layout](https://github.com/hrescak/Sketch-Flex-Layout) from [Matej Hrescak](https://twitter.com/mhrescak).
 
