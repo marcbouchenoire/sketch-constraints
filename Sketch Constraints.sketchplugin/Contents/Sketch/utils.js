@@ -5,14 +5,17 @@
 var app = NSApplication.sharedApplication(),
     selection,
     plugin,
+    command,
     doc,
     page,
     artboard,
-    resourcesPath
+    resourcesPath = "constraints@2x.png",
+    constraintsKey = "@constraints"
 
 function initContext(context) {
     doc = context.document,
         plugin = context.plugin,
+        command = context.command,
         page = doc.currentPage(),
         artboard = page.currentArtboard(),
         selection = context.selection
@@ -51,31 +54,21 @@ function exists(el) {
     return value
 }
 
-function find(key, array){
-    for (var i=0; i < array.length; i++) {
-        if (array[i].name === key) {
-            return array[i]
+//--------------------------------------//
+//                Layers                //
+//--------------------------------------//
+
+function loopThrough(layerLoop, callback) {
+    while (layer = layerLoop.nextObject()) {
+        if (is.group(layer)) {
+            var layers = layer.layers().array(),
+                layersInsideLoop = layers.objectEnumerator()
+            loopThrough(layersInsideLoop, callback)
+        } else {
+            callback(layer)
         }
     }
 }
-
-//--------------------------------------//
-//              Get Layers              //
-//--------------------------------------//
-
-function getLayersByName(layerName, parent) {
-    var group = parent ? parent : currentPage,
-        children = group.children(),
-        predicate = NSPredicate.predicateWithFormat("name == %@", layerName),
-        filteredArray = children.filteredArrayUsingPredicate(predicate)
-
-    return filteredArray
-}
-
-function getLayerByName(layerName, parent) {
-    var layers = getLayersByName(layerName, parent)
-    if (layers.count()) return layers[0]
-        }
 
 //--------------------------------------//
 //             Layer Types              //
@@ -103,23 +96,12 @@ var is = {
 }
 
 //--------------------------------------//
-//          @constraints Layer          //
+//             Constraints              //
 //--------------------------------------//
 
-function updateConstraintsLayer(layer, content) {
-    layer.stringValue = JSON.stringify(content, null, "\t")
-    layer.adjustFrameToFit()
-}
-
-function createConstraintsLayer(content) {
-    var constraintsLayer = artboard.addLayerOfType("text")
-    constraintsLayer.stringValue = JSON.stringify(content, null, "\t")
-    constraintsLayer.name = "@constraints"
-    constraintsLayer.fontSize = "10"
-    constraintsLayer.setIsLocked(true)
-    constraintsLayer.setIsVisible(false)
-
-    return constraintsLayer
+function updateConstraintsForLayer(layer, content) {
+    var formattedContent = JSON.stringify(content, null, "\t")
+    command.setValue_forKey_onLayer(formattedContent, constraintsKey, layer)
 }
 
 //--------------------------------------//
@@ -202,15 +184,8 @@ var layout = {
     }
 }
 
-function processLayer(layer, constraintsLayerContent) {
-    var constraints = find(String(layer.name()), constraintsLayerContent)
+function processLayer(layer, constraints) {
     if (exists(constraints)) layout.update(layer, constraints)
-    if (is.group(layer)) {
-        var sublayers = layer.layers()
-        for (var i = 0; i < sublayers.count(); i++) {
-            processLayer(sublayers.objectAtIndex(i), constraintsLayerContent)
-        }
-    }
 }
 
 //--------------------------------------//
@@ -233,25 +208,18 @@ function displayDialog(message, title) {
 //                Inputs                //
 //--------------------------------------//
 
-function fillInputs(constraintsLayerContent, inputs, currentLayer) {
-    var layerHasConstraints = false
-    for (var i = 0; i < constraintsLayerContent.length; i++) {
-        var current = constraintsLayerContent[i]
-        if (current.name == currentLayer.name()) {
-            var layerHasConstraints = true
-            inputs[0].setState((exists(current.width)) ? NSOnState : NSOffState)
-            inputs[2].setState((exists(current.height)) ? NSOnState : NSOffState)
-            inputs[4].setState((current.horizontally) ? NSOnState : NSOffState)
-            inputs[5].setState((current.vertically) ? NSOnState : NSOffState)
-            inputs[6].setStringValue((exists(current.top)) ? current.top : "")
-            inputs[7].setStringValue((exists(current.right)) ? current.right : "")
-            inputs[8].setStringValue((exists(current.bottom)) ? current.bottom : "")
-            inputs[9].setStringValue((exists(current.left)) ? current.left : "")
-            delete constraintsLayerContent.splice(i, 1)
-        }
-    }
+function fillInputs(constraintsLayerContent, inputs) {
+    var constraints = constraintsLayerContent
+    inputs[0].setState((exists(constraints.width)) ? NSOnState : NSOffState)
+    inputs[2].setState((exists(constraints.height)) ? NSOnState : NSOffState)
+    inputs[4].setState((constraints.horizontally) ? NSOnState : NSOffState)
+    inputs[5].setState((constraints.vertically) ? NSOnState : NSOffState)
+    inputs[6].setStringValue((exists(constraints.top)) ? constraints.top : "")
+    inputs[7].setStringValue((exists(constraints.right)) ? constraints.right : "")
+    inputs[8].setStringValue((exists(constraints.bottom)) ? constraints.bottom : "")
+    inputs[9].setStringValue((exists(constraints.left)) ? constraints.left : "")
 
-    return layerHasConstraints
+    return (exists(constraintsLayerContent))
 }
 
 function getStringValue(input) {
@@ -323,7 +291,7 @@ function createWindow(currentLayer) {
         constraintsLabel = createLabel("Constraints", 12, true, NSMakeRect(0, 0, 300, 20)),
         constraintsView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
         imageView = NSImageView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
-        backgroundImage = NSImage.alloc().initByReferencingFile(plugin.urlForResourceNamed("constraints@2x.png").path()),
+        backgroundImage = NSImage.alloc().initByReferencingFile(plugin.urlForResourceNamed(resourcesPath).path()),
         topComboBox = createSelect(NSMakeRect(100,122,100,25), getPosition.top(currentLayer)),
         rightComboBox = createSelect(NSMakeRect(200,61,100,25), getPosition.right(currentLayer)),
         bottomComboBox = createSelect(NSMakeRect(100,1,100,25), getPosition.bottom(currentLayer)),
