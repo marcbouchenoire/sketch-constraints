@@ -272,7 +272,7 @@ function createWindow(currentLayer) {
     var alert = COSAlertWindow.new()
     alert.addButtonWithTitle("OK")
     alert.addButtonWithTitle("Cancel")
-    alert.addButtonWithTitle("Reset Constraints")
+    alert.addButtonWithTitle("Remove Constraints")
     alert.setMessageText("Sketch Constraints")
     alert.setInformativeText("Set constraints on the current layer. These constraints are relative to the parent, either a group or an artboard. You can select the current value in the combo boxes.")
     alert.setIcon(NSImage.alloc().initByReferencingFile(plugin.urlForResourceNamed("icon@2x.png").path()));
