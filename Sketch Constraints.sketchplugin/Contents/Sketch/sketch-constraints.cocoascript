@@ -49,8 +49,10 @@ var onRun = function(context) {
       left: getStringValue(inputs[9]),
       horizontally: getStateValue(inputs[4]),
       vertically: getStateValue(inputs[5]),
-      width: (Number(inputs[0].state())) ? getStringValue(inputs[1]) : null,
-      height: (Number(inputs[2].state())) ? getStringValue(inputs[3]) : null
+      width:            (Number(inputs[0].state()) && !Number(inputs[10].state())) ? getStringValue(inputs[1]) : null,
+      widthProportion:  (Number(inputs[0].state()) &&  Number(inputs[10].state())) ? getStringValue(inputs[1]) : null,
+      height:           (Number(inputs[2].state()) && !Number(inputs[11].state())) ? getStringValue(inputs[3]) : null,
+      heightProportion: (Number(inputs[2].state()) &&  Number(inputs[11].state())) ? getStringValue(inputs[3]) : null
     }
     // Delete null values
     for (var key in values) {
