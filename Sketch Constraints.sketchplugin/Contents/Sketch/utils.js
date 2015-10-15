@@ -112,9 +112,15 @@ var getSize = {
     width : function(layer) {
         return layer.frame().width()
     },
+    widthProportion : function(layer) {
+        return layer.frame().width()/layer.parentGroup().frame().width()
+    },
     height : function(layer) {
         return layer.frame().height()
-    }
+    },
+    heightProportion : function(layer) {
+        return layer.frame().height()/layer.parentGroup().frame().height()
+    },
 }
 
 var getPosition = {
@@ -171,9 +177,21 @@ var layout = {
     setHeight : function(layer, constraint) {
         layer.frame().setHeight(constraint)
     },
+    setWidthProportion : function(layer, constraint) {
+        var parentWidth = layer.parentGroup().frame().width()
+        var propWidth   = (Number(constraint)*parentWidth/100)
+        layer.frame().setWidth(propWidth)
+    },
+    setHeightProportion : function(layer, constraint) {
+        var parentHeight = layer.parentGroup().frame().height()
+        var propHeight   = (Number(constraint)*parentHeight/100)
+        layer.frame().setHeight(propHeight)
+    },
     update : function(layer, constraints) {
         if (exists(constraints.width)) layout.setWidth(layer, constraints.width)
+        if (exists(constraints.widthProportion)) layout.setWidthProportion(layer, constraints.widthProportion) 
         if (exists(constraints.height)) layout.setHeight(layer, constraints.height)
+        if (exists(constraints.heightProportion)) layout.setHeightProportion(layer, constraints.heightProportion)
         if (exists(constraints.top)) layout.setTop(layer, constraints.top)
         if (exists(constraints.left)) layout.setLeft(layer, constraints.left)
         if (exists(constraints.bottom)) layout.setBottom(layer, constraints.bottom, constraints.top, constraints.height)
@@ -218,6 +236,17 @@ function fillInputs(constraintsLayerContent, inputs) {
     inputs[7].setStringValue((exists(constraints.right)) ? constraints.right : "")
     inputs[8].setStringValue((exists(constraints.bottom)) ? constraints.bottom : "")
     inputs[9].setStringValue((exists(constraints.left)) ? constraints.left : "")
+
+    if (!exists(constraints.width)) {
+        inputs[0].setState((exists(constraints.widthProportion)) ? NSOnState : NSOffState)
+        if (exists(constraints.widthProportion)) inputs[1].setStringValue(constraints.widthProportion)
+        inputs[10].setState((exists(constraints.widthProportion)) ? NSOnState : NSOffState)
+    };
+    if (!exists(constraints.height)) {
+        inputs[2].setState((exists(constraints.heightProportion)) ? NSOnState : NSOffState)
+        if (exists(constraints.heightProportion)) inputs[3].setStringValue(constraints.heightProportion)
+        inputs[11].setState((exists(constraints.heightProportion)) ? NSOnState : NSOffState)
+    }
 
     return (exists(constraintsLayerContent))
 }
@@ -281,13 +310,15 @@ function createWindow(currentLayer) {
         alignLabel = createLabel("Alignment", 12, true, NSMakeRect(0, 58, 300, 20)),
         alignHorizontallyCheckbox = createCheckbox("Align Horizontally", false, NSMakeRect(0, 31, 300, 20)),
         alignVerticallyCheckbox = createCheckbox("Align Vertically", false, NSMakeRect(0, 6, 300, 21)),
-        sizeLabel = createLabel("Size", 12, true, NSMakeRect(150, 58, 300, 20)),
-        widthView = NSView.alloc().initWithFrame(NSMakeRect(150, 31, 300, 20)),
+        sizeLabel = createLabel("Size", 12, true, NSMakeRect(130, 58, 300, 20)),
+        widthView = NSView.alloc().initWithFrame(NSMakeRect(130, 31, 300, 20)),
         widthCheckbox = createCheckbox("Width", false, NSMakeRect(0, 0, 300, 20)),
-        widthTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 77, 20)),
-        heightView = NSView.alloc().initWithFrame(NSMakeRect(150, 8, 300, 20)),
+        widthTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 60, 20)),
+        widthProportionCheckbox = createCheckbox("\%", false, NSMakeRect(130, 0, 300, 20)),
+        heightView = NSView.alloc().initWithFrame(NSMakeRect(130, 8, 300, 20)),
         heightCheckbox = createCheckbox("Height", false, NSMakeRect(0, 0, 300, 20)),
-        heightTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 77, 20)),
+        heightTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 60, 20)),
+        heightProportionCheckbox = createCheckbox("\%", false, NSMakeRect(130, 0, 300, 20)),
         constraintsLabel = createLabel("Constraints", 12, true, NSMakeRect(0, 0, 300, 20)),
         constraintsView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
         imageView = NSImageView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
@@ -304,10 +335,12 @@ function createWindow(currentLayer) {
     widthTextfield.setStringValue(getSize.width(currentLayer))
     widthView.addSubview(widthCheckbox)
     widthView.addSubview(widthTextfield)
+    widthView.addSubview(widthProportionCheckbox)
     mainView.addSubview(widthView)
     heightTextfield.setStringValue(getSize.height(currentLayer))
     heightView.addSubview(heightCheckbox)
     heightView.addSubview(heightTextfield)
+    heightView.addSubview(heightProportionCheckbox)
     mainView.addSubview(heightView)
     alert.addAccessoryView(mainView)
     alert.addAccessoryView(constraintsLabel)
@@ -319,6 +352,9 @@ function createWindow(currentLayer) {
     constraintsView.addSubview(bottomComboBox)
     constraintsView.addSubview(leftComboBox)
 
-    var inputs = [widthCheckbox, widthTextfield, heightCheckbox, heightTextfield, alignHorizontallyCheckbox, alignVerticallyCheckbox, topComboBox, rightComboBox, bottomComboBox, leftComboBox]
+    var inputs = [widthCheckbox, widthTextfield, heightCheckbox, heightTextfield, 
+                  alignHorizontallyCheckbox, alignVerticallyCheckbox, 
+                  topComboBox, rightComboBox, bottomComboBox, leftComboBox, 
+                  widthProportionCheckbox, heightProportionCheckbox]
     return [alert, inputs]
 }
