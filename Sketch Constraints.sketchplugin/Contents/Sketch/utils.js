@@ -314,11 +314,11 @@ function createWindow(currentLayer) {
         widthView = NSView.alloc().initWithFrame(NSMakeRect(130, 31, 300, 20)),
         widthCheckbox = createCheckbox("Width", false, NSMakeRect(0, 0, 300, 20)),
         widthTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 60, 20)),
-        widthProportionCheckbox = createCheckbox("\%", false, NSMakeRect(130, 0, 300, 20)),
+        widthProportionCheckbox = createCheckbox("\%", false, NSMakeRect(135, 0, 300, 20)),
         heightView = NSView.alloc().initWithFrame(NSMakeRect(130, 8, 300, 20)),
         heightCheckbox = createCheckbox("Height", false, NSMakeRect(0, 0, 300, 20)),
         heightTextfield = NSTextField.alloc().initWithFrame(NSMakeRect(70, 0, 60, 20)),
-        heightProportionCheckbox = createCheckbox("\%", false, NSMakeRect(130, 0, 300, 20)),
+        heightProportionCheckbox = createCheckbox("\%", false, NSMakeRect(135, 0, 300, 20)),
         constraintsLabel = createLabel("Constraints", 12, true, NSMakeRect(0, 0, 300, 20)),
         constraintsView = NSView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
         imageView = NSImageView.alloc().initWithFrame(NSMakeRect(0, 0, 300, 150)),
@@ -352,9 +352,9 @@ function createWindow(currentLayer) {
     constraintsView.addSubview(bottomComboBox)
     constraintsView.addSubview(leftComboBox)
 
-    var inputs = [widthCheckbox, widthTextfield, heightCheckbox, heightTextfield, 
-                  alignHorizontallyCheckbox, alignVerticallyCheckbox, 
-                  topComboBox, rightComboBox, bottomComboBox, leftComboBox, 
+    var inputs = [widthCheckbox, widthTextfield, heightCheckbox, heightTextfield,
+                  alignHorizontallyCheckbox, alignVerticallyCheckbox,
+                  topComboBox, rightComboBox, bottomComboBox, leftComboBox,
                   widthProportionCheckbox, heightProportionCheckbox]
     return [alert, inputs]
 }
