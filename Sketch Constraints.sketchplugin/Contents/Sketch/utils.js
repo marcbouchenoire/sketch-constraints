@@ -61,7 +61,7 @@ function exists(el) {
 function loopThrough(layerLoop, callback) {
     while (layer = layerLoop.nextObject()) {
         if (is.group(layer)) {
-            var layers = layer.layers().array(),
+            var layers = layer.layers(),
                 layersInsideLoop = layers.objectEnumerator()
             loopThrough(layersInsideLoop, callback)
         } else {
