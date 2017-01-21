@@ -1,4 +1,4 @@
-# Sketch Constraints
+# 📏 Sketch Constraints
 
 ![Banner](docs/banner@2x.png)
 Sketch Constraints is a plugin that integrates constraints in Sketch to lay out layers. These constraints are relative to the parent, either a group or an artboard.

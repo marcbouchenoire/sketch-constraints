@@ -27,16 +27,16 @@ function initContext(context) {
 
 function error(selection, currentLayer, artboard) {
     if (!currentLayer) {
-        showMessage("No layers selected.")
+        showMessage("📏 No layers selected.")
         return true
     } else if (selection.count() > 1) {
-        showMessage("You can only select one layer.")
+        showMessage("📏 You can only select one layer.")
         return true
     } else if (!artboard) {
-        showMessage("The layer has to be in an artboard.")
+        showMessage("📏 The layer has to be in an artboard.")
         return true
     } else if (is.artboard(currentLayer)) {
-        showMessage("You can't put constraints on artboards.")
+        showMessage("📏 You can't put constraints on artboards.")
         return true
     }
 }
@@ -189,7 +189,7 @@ var layout = {
     },
     update : function(layer, constraints) {
         if (exists(constraints.width)) layout.setWidth(layer, constraints.width)
-        if (exists(constraints.widthProportion)) layout.setWidthProportion(layer, constraints.widthProportion) 
+        if (exists(constraints.widthProportion)) layout.setWidthProportion(layer, constraints.widthProportion)
         if (exists(constraints.height)) layout.setHeight(layer, constraints.height)
         if (exists(constraints.heightProportion)) layout.setHeightProportion(layer, constraints.heightProportion)
         if (exists(constraints.top)) layout.setTop(layer, constraints.top)
