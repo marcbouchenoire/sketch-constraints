@@ -9,7 +9,7 @@ var updateLayout = function(context) {
   // Create a loop which iterates through every artboard
   while (artboard = artboardLoop.nextObject()) {
     // Get all layers from the current artboard in the loop
-    var layers = artboard.layers().array(),
+    var layers = artboard.layers(),
         layerLoop = layers.objectEnumerator()
     loopThrough(layerLoop, function(layer) {
       var constraintsForLayer = command.valueForKey_onLayer(constraintsKey, layer)
