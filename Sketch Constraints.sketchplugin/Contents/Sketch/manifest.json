@@ -6,17 +6,17 @@
     "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
     "version" : "1.0",
     "identifier" : "com.bouchenoiremarc.sketch-constraints",
-    "compatibleVersion": "3.3",
+    "compatibleVersion": 4,
     "bundleVersion": "1",
     "commands" : [
         {
-            "script" : "sketch-constraints.cocoascript",
+            "script" : "main.cocoascript",
             "shortcut" : "cmd e",
             "name" : "Edit Constraints",
             "identifier" : "editConstraints"
         },
         {
-            "script" : "sketch-constraints.cocoascript",
+            "script" : "main.cocoascript",
             "handler" : "updateLayout",
             "shortcut" : "cmd l",
             "name" : "Update Layout",

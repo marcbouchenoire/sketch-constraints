@@ -352,6 +352,11 @@ function createWindow(currentLayer) {
     constraintsView.addSubview(bottomComboBox)
     constraintsView.addSubview(leftComboBox)
 
+    alert.alert().window().setInitialFirstResponder(topComboBox);
+    topComboBox.setNextKeyView(rightComboBox);
+    rightComboBox.setNextKeyView(bottomComboBox);
+    bottomComboBox.setNextKeyView(leftComboBox);
+
     var inputs = [widthCheckbox, widthTextfield, heightCheckbox, heightTextfield,
                   alignHorizontallyCheckbox, alignVerticallyCheckbox,
                   topComboBox, rightComboBox, bottomComboBox, leftComboBox,
