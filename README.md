@@ -25,6 +25,10 @@ Make sure you have the latest version of Sketch installed. **(Sketch 40+)**
 1. [Download the ZIP file of this repository](https://github.com/bouchenoiremarc/Sketch-Constraints/archive/master.zip)
 2. Double click on `Sketch Constraints.sketchplugin`
 
+## Install with Sketch Runner
+With Sketch Runner, just go to the `install` command and search for `Sketch Constraints`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
+
+
 ## Notes
 
 * **Constraints are not relative to other layers, only to the parent.**
