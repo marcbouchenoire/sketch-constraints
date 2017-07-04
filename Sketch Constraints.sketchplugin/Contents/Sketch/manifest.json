@@ -6,6 +6,7 @@
     "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
     "version" : "1.0",
     "identifier" : "com.bouchenoiremarc.sketch-constraints",
+    "appcast": "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Constraints/master/.appcast.xml",
     "compatibleVersion": 4,
     "bundleVersion": "1",
     "commands" : [
