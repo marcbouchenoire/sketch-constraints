@@ -14,14 +14,18 @@
             "script" : "main.cocoascript",
             "shortcut" : "cmd e",
             "name" : "Edit Constraints",
-            "identifier" : "editConstraints"
+            "identifier" : "editConstraints",
+            "description" : "Set constraints on the current layer.",
+            "icon" : "editConstraints@2x.png",
         },
         {
             "script" : "main.cocoascript",
             "handler" : "updateLayout",
             "shortcut" : "cmd l",
             "name" : "Update Layout",
-            "identifier" : "updateLayout"
+            "identifier" : "updateLayout",
+            "description" : "Apply every constraints in the document.",
+            "icon" : "updateLayout@2x.png",
         }
     ],
     "menu" : {
