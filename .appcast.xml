@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
+    <title>Sketch Constraints</title>
+    <link>https://github.com/bouchenoiremarc/Sketch-Constraints</link>
+    <description>A plugin that integrates constraints in Sketch to lay out layers.</description>
+    <language>en</language>
     <item>
+      <title>Sketch Constraints 1.0.1</title>
+      <description>
+        <![CDATA[
+          <ul>
+            <li>Added Sketch Runner integration</li>
+          </ul>
+        ]]>
+      </description>
+      <enclosure url="https://github.com/bouchenoiremarc/Sketch-Constraints/releases/download/v1.0.1/Sketch.Constraints.sketchplugin.zip" sparkle:version="1.0.1"/>
+    </item>
+    <item>
+      <title>Sketch Constraints 1.0</title>
       <enclosure url="https://github.com/bouchenoiremarc/Sketch-Constraints/releases/download/v1.0/Sketch.Constraints.sketchplugin.zip" sparkle:version="1.0"/>
     </item>
   </channel>
