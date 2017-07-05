@@ -20,15 +20,17 @@ Sketch Constraints is a plugin that integrates constraints in Sketch to lay out 
 
 ## Installation
 
+### Using Sketch Runner
+With Sketch Runner, just go to the `install` command and search for `Sketch Constraints`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
+
+![Install Sketch Constraints with Sketch Runner](docs/runner@2x.png)
+
+### Manually
+
 Make sure you have the latest version of Sketch installed. **(Sketch 40+)**
 
 1. [Download the ZIP file of this repository](https://github.com/bouchenoiremarc/Sketch-Constraints/archive/master.zip)
 2. Double click on `Sketch Constraints.sketchplugin`
-
-## Install with Sketch Runner
-With Sketch Runner, just go to the `install` command and search for `Sketch Constraints`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
-
-![Install Sketch Constraints with Sketch Runner](docs/sketch-constraints-runner.png)
 
 ## Notes
 
