@@ -5,7 +5,7 @@
   "author": "Marc Bouchenoire",
   "authorEmail": "mail@marcbouchenoire.com",
   "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "identifier": "com.bouchenoiremarc.sketch-constraints",
   "appcast":
     "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Constraints/master/.appcast.xml",
