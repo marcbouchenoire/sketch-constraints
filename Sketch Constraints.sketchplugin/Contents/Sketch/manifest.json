@@ -1,37 +1,35 @@
 {
-    "name": "📏 Sketch Constraints",
-    "description" : "A plugin that integrates constraints in Sketch to lay out layers.",
-    "author" : "Marc Bouchenoire",
-    "authorEmail" : "mail@marcbouchenoire.com",
-    "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
-    "version" : "1.0.1",
-    "identifier" : "com.bouchenoiremarc.sketch-constraints",
-    "appcast": "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Constraints/master/.appcast.xml",
-    "compatibleVersion": 4,
-    "bundleVersion": "1",
-    "commands" : [
-        {
-            "script" : "main.cocoascript",
-            "shortcut" : "cmd e",
-            "name" : "Edit Constraints",
-            "identifier" : "editConstraints",
-            "description" : "Set constraints on the current layer.",
-            "icon" : "editConstraints@2x.png",
-        },
-        {
-            "script" : "main.cocoascript",
-            "handler" : "updateLayout",
-            "shortcut" : "cmd l",
-            "name" : "Update Layout",
-            "identifier" : "updateLayout",
-            "description" : "Apply every constraints in the document.",
-            "icon" : "updateLayout@2x.png",
-        }
-    ],
-    "menu" : {
-        "items" : [
-            "editConstraints",
-            "updateLayout"
-        ]
+  "name": "Sketch Constraints",
+  "description":
+    "A plugin that integrates constraints in Sketch to lay out layers.",
+  "author": "Marc Bouchenoire",
+  "authorEmail": "mail@marcbouchenoire.com",
+  "homepage": "https://github.com/bouchenoiremarc/Sketch-Constraints",
+  "version": "1.0.1",
+  "identifier": "com.bouchenoiremarc.sketch-constraints",
+  "appcast":
+    "https://raw.githubusercontent.com/bouchenoiremarc/Sketch-Constraints/master/.appcast.xml",
+  "icon": "settings@2x.png",
+  "commands": [
+    {
+      "script": "main.cocoascript",
+      "shortcut": "cmd e",
+      "name": "Edit Constraints",
+      "identifier": "editConstraints",
+      "description": "Set constraints on the current layer.",
+      "icon": "editConstraints@2x.png"
+    },
+    {
+      "script": "main.cocoascript",
+      "handler": "updateLayout",
+      "shortcut": "cmd l",
+      "name": "Update Layout",
+      "identifier": "updateLayout",
+      "description": "Apply every constraints in the document.",
+      "icon": "updateLayout@2x.png"
     }
+  ],
+  "menu": {
+    "items": ["editConstraints", "updateLayout"]
+  }
 }
